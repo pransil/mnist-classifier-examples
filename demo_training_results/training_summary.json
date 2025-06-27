@@ -1,0 +1,21 @@
+{
+  "training_timestamp": "2025-06-27T10:54:47.736810",
+  "total_models": 3,
+  "models": {
+    "simple_mlp": {
+      "accuracy": 0.255,
+      "training_time": 0.851830005645752,
+      "accuracy_percent": 25.5
+    },
+    "decision_tree": {
+      "accuracy": 0.245,
+      "training_time": 1.2711288928985596,
+      "accuracy_percent": 24.5
+    },
+    "knn": {
+      "accuracy": 0.245,
+      "training_time": 0.0002200603485107422,
+      "accuracy_percent": 24.5
+    }
+  }
+}

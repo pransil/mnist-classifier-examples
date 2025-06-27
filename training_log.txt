@@ -1,0 +1,28 @@
+🚀 MNIST Classifier - Full Model Training
+============================================================
+Started at: 2025-06-27 10:59:55
+
+📁 Loading MNIST dataset...
+Loading MNIST dataset...
+Dataset loaded: 54000 train, 6000 validation, 10000 test samples
+Converting MNIST data to numpy arrays...
+Numpy arrays created: X_train (54000, 784), X_val (6000, 784), X_test (10000, 784)
+✅ Data loaded successfully!
+   Train: 54000 samples
+   Val: 6000 samples
+   Test: 10000 samples
+
+🔧 Using device: cpu
+
+🧠 Training MLP Models
+----------------------------------------
+
+🔄 Training mlp_small...
+Trainer initialized with device: cpu
+Traceback (most recent call last):
+  File "/Users/patransil/dev/agentic_programming/m/mnist_classifier/deliverables/src/train_mnist_models.py", line 300, in <module>
+    main()
+  File "/Users/patransil/dev/agentic_programming/m/mnist_classifier/deliverables/src/train_mnist_models.py", line 96, in main
+    trainer.setup_training(
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'PyTorchTrainer' object has no attribute 'setup_training'

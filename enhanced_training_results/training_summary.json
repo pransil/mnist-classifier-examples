@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-06-27T11:55:38.838988",
+  "total_time": 24.454396963119507,
+  "best_model": {
+    "name": "Improved Mlp",
+    "accuracy": 1.0,
+    "training_time": 2.560997724533081
+  },
+  "all_models": [
+    {
+      "name": "Improved Mlp",
+      "accuracy": 1.0,
+      "training_time": 2.560997724533081,
+      "efficiency": 0.39047281862865346
+    },
+    {
+      "name": "Random Forest",
+      "accuracy": 1.0,
+      "training_time": 20.993619918823242,
+      "efficiency": 0.047633519319999824
+    },
+    {
+      "name": "Logistic Regression",
+      "accuracy": 1.0,
+      "training_time": 0.4247868061065674,
+      "efficiency": 2.354122081063712
+    }
+  ]
+}

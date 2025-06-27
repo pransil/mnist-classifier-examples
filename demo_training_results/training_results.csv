@@ -1,0 +1,4 @@
+Model,Accuracy,Training_Time_s,Accuracy_Percent
+simple_mlp,0.255,0.851830005645752,25.5
+decision_tree,0.245,1.2711288928985596,24.5
+knn,0.245,0.0002200603485107422,24.5

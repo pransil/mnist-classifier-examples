@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNIST Classifier Experiment Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; }
+        .section { margin: 30px 0; }
+        .subsection { margin: 20px 0; }
+        .table-container { overflow-x: auto; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        .metric-value { font-weight: bold; color: #2563eb; }
+        .plot-container { text-align: center; margin: 20px 0; }
+        .plot-container img { max-width: 100%; height: auto; border: 1px solid #ddd; }
+        .summary-box { background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .best-model { background-color: #d4edda; padding: 10px; border-radius: 5px; margin: 5px 0; }
+        .config-item { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MNIST Classifier Experiment Report</h1>
+        <p>Generated on: 2025-06-27 09:43:07</p>
+        <p>Total Models Evaluated: 10</p>
+    </div>
+    
+    <div class="section">
+        <h2>🏆 Executive Summary</h2>
+        <div class="summary-box">
+        <h3>Best Accuracy</h3><div class="best-model">1. <strong>cnn_deep</strong>: 0.9877</div><div class="best-model">2. <strong>cnn_modern</strong>: 0.9816</div><div class="best-model">3. <strong>cnn_simple</strong>: 0.9813</div><h3>Best F1 Macro</h3><div class="best-model">1. <strong>cnn_deep</strong>: 0.9877</div><div class="best-model">2. <strong>cnn_modern</strong>: 0.9816</div><div class="best-model">3. <strong>cnn_simple</strong>: 0.9813</div><h3>Best Training Time</h3><div class="best-model">1. <strong>xgboost_fast</strong>: 53.3559</div><div class="best-model">2. <strong>mlp_small</strong>: 60.5916</div><div class="best-model">3. <strong>xgboost_balanced</strong>: 93.3878</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>📊 Performance Comparison</h2>
+        
+        <div class="subsection">
+            <h3>Main Results</h3>
+            <div class="table-container">
+                <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Model</th>
+      <th>accuracy</th>
+      <th>precision_macro</th>
+      <th>recall_macro</th>
+      <th>f1_macro</th>
+      <th>training_time</th>
+      <th>inference_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mlp_small</td>
+      <td>0.9494</td>
+      <td>0.9495</td>
+      <td>0.9496</td>
+      <td>0.9495</td>
+      <td>60.5916</td>
+      <td>0.0025</td>
+    </tr>
+    <tr>
+      <td>mlp_medium</td>
+      <td>0.9508</td>
+      <td>0.9508</td>
+      <td>0.9507</td>
+      <td>0.9507</td>
+      <td>105.2525</td>
+      <td>0.0032</td>
+    </tr>
+    <tr>
+      <td>mlp_large</td>
+      <td>0.9559</td>
+      <td>0.9559</td>
+      <td>0.9558</td>
+      <td>0.9558</td>
+      <td>160.6598</td>
+      <td>0.0057</td>
+    </tr>
+    <tr>
+      <td>cnn_simple</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>198.7244</td>
+      <td>0.0065</td>
+    </tr>
+    <tr>
+      <td>cnn_medium</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>243.8773</td>
+      <td>0.0093</td>
+    </tr>
+    <tr>
+      <td>cnn_deep</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>359.2147</td>
+      <td>0.0135</td>
+    </tr>
+    <tr>
+      <td>cnn_modern</td>
+      <td>0.9816</td>
+      <td>0.9815</td>
+      <td>0.9816</td>
+      <td>0.9816</td>
+      <td>396.8929</td>
+      <td>0.0143</td>
+    </tr>
+    <tr>
+      <td>xgboost_fast</td>
+      <td>0.9137</td>
+      <td>0.9137</td>
+      <td>0.9138</td>
+      <td>0.9137</td>
+      <td>53.3559</td>
+      <td>0.0043</td>
+    </tr>
+    <tr>
+      <td>xgboost_balanced</td>
+      <td>0.9358</td>
+      <td>0.9357</td>
+      <td>0.9359</td>
+      <td>0.9358</td>
+      <td>93.3878</td>
+      <td>0.0069</td>
+    </tr>
+    <tr>
+      <td>xgboost_deep</td>
+      <td>0.9440</td>
+      <td>0.9439</td>
+      <td>0.9440</td>
+      <td>0.9439</td>
+      <td>207.3747</td>
+      <td>0.0064</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        </div>
+        <div class="subsection"><h3>Performance Visualizations</h3>
+            <div class="plot-container">
+                <h4>Accuracy Comparison</h4>
+                <img src="plots/accuracy_comparison_20250627_094302.png" alt="accuracy_comparison">
+            </div>
+            
+            <div class="plot-container">
+                <h4>F1 Comparison</h4>
+                <img src="plots/f1_comparison_20250627_094302.png" alt="f1_comparison">
+            </div>
+            
+            <div class="plot-container">
+                <h4>Time Vs Accuracy</h4>
+                <img src="plots/time_vs_accuracy_20250627_094302.png" alt="time_vs_accuracy">
+            </div>
+            
+            <div class="plot-container">
+                <h4>Metrics Heatmap</h4>
+                <img src="plots/metrics_heatmap_20250627_094302.png" alt="metrics_heatmap">
+            </div>
+            
+            <div class="plot-container">
+                <h4>Model Complexity</h4>
+                <img src="plots/model_complexity_20250627_094302.png" alt="model_complexity">
+            </div>
+            </div>
+        <div class="subsection">
+            <h3>Detailed Metrics</h3>
+            <div class="table-container">
+                <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Model</th>
+      <th>accuracy</th>
+      <th>precision_macro</th>
+      <th>precision_micro</th>
+      <th>precision_weighted</th>
+      <th>recall_macro</th>
+      <th>recall_micro</th>
+      <th>recall_weighted</th>
+      <th>f1_macro</th>
+      <th>f1_micro</th>
+      <th>f1_weighted</th>
+      <th>roc_auc_macro</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mlp_small</td>
+      <td>0.9494</td>
+      <td>0.9495</td>
+      <td>0.9494</td>
+      <td>0.9494</td>
+      <td>0.9496</td>
+      <td>0.9494</td>
+      <td>0.9494</td>
+      <td>0.9495</td>
+      <td>0.9494</td>
+      <td>0.9494</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>mlp_medium</td>
+      <td>0.9508</td>
+      <td>0.9508</td>
+      <td>0.9508</td>
+      <td>0.9508</td>
+      <td>0.9507</td>
+      <td>0.9508</td>
+      <td>0.9508</td>
+      <td>0.9507</td>
+      <td>0.9508</td>
+      <td>0.9508</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>mlp_large</td>
+      <td>0.9559</td>
+      <td>0.9559</td>
+      <td>0.9559</td>
+      <td>0.9559</td>
+      <td>0.9558</td>
+      <td>0.9559</td>
+      <td>0.9559</td>
+      <td>0.9558</td>
+      <td>0.9559</td>
+      <td>0.9559</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>cnn_simple</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>0.9813</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>cnn_medium</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>0.9812</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>cnn_deep</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>0.9877</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>cnn_modern</td>
+      <td>0.9816</td>
+      <td>0.9815</td>
+      <td>0.9816</td>
+      <td>0.9816</td>
+      <td>0.9816</td>
+      <td>0.9816</td>
+      <td>0.9816</td>
+      <td>0.9816</td>
+      <td>0.9816</td>
+      <td>0.9816</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>xgboost_fast</td>
+      <td>0.9137</td>
+      <td>0.9137</td>
+      <td>0.9137</td>
+      <td>0.9138</td>
+      <td>0.9138</td>
+      <td>0.9137</td>
+      <td>0.9137</td>
+      <td>0.9137</td>
+      <td>0.9137</td>
+      <td>0.9137</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>xgboost_balanced</td>
+      <td>0.9358</td>
+      <td>0.9357</td>
+      <td>0.9358</td>
+      <td>0.9359</td>
+      <td>0.9359</td>
+      <td>0.9358</td>
+      <td>0.9358</td>
+      <td>0.9358</td>
+      <td>0.9358</td>
+      <td>0.9358</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>xgboost_deep</td>
+      <td>0.9440</td>
+      <td>0.9439</td>
+      <td>0.9440</td>
+      <td>0.9441</td>
+      <td>0.9440</td>
+      <td>0.9440</td>
+      <td>0.9440</td>
+      <td>0.9439</td>
+      <td>0.9440</td>
+      <td>0.9440</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        </div>
+    </div>
+    
+            <div class="section">
+                <h2>⚙️ Experiment Configuration</h2>
+                <div class="summary-box">
+            <div class="config-item"><strong>project_name:</strong> MNIST Digit Classifier</div><div class="config-item"><strong>experiment_date:</strong> 2025-06-27</div><div class="config-item"><strong>total_models_tested:</strong> 10</div><div class="config-item"><strong>model_types:</strong> ['Multi-Layer Perceptron (MLP)', 'Convolutional Neural Network (CNN)', 'XGBoost Gradient Boosting']</div><div class="config-item"><strong>dataset:</strong> MNIST Handwritten Digits (70,000 samples)</div><div class="config-item"><strong>test_set_size:</strong> 10000</div><div class="config-item"><strong>hyperparameter_search:</strong> Focused grid search with 24 configurations</div><div class="config-item"><strong>evaluation_metrics:</strong> ['Accuracy', 'Precision', 'Recall', 'F1-Score', 'Training Time', 'Inference Time']</div><div class="config-item"><strong>frameworks_used:</strong> ['PyTorch 2.0+', 'XGBoost 1.7+', 'scikit-learn 1.3+', 'MLflow 2.5+']</div><div class="config-item"><strong>hardware:</strong> CPU-based training and inference</div><div class="config-item"><strong>objective:</strong> Compare multiple ML approaches for digit classification with systematic evaluation</div></div></div>
+            <div class="section">
+                <h2>📈 Interactive Dashboard</h2>
+                <p><a href="html/dashboard_20250627_094302.html" target="_blank">Open Interactive Dashboard</a></p>
+            </div>
+            
+    <div class="section">
+        <h2>📝 Notes</h2>
+        <ul>
+            <li>All metrics are calculated on the test set</li>
+            <li>Training times include full hyperparameter optimization</li>
+            <li>Models are compared using consistent evaluation protocols</li>
+            <li>Interactive dashboard provides additional exploration capabilities</li>
+        </ul>
+    </div>
+</body>
+</html>
+        
