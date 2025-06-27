@@ -1,6 +1,6 @@
-# MNIST Digit Classifier Examples
+# MNIST Digit Classifier Examples - testing my automated app builder
 
-Complete implementation of multiple ML approaches for MNIST digit classification with comprehensive evaluation and comparison.
+Complete implementation of multiple ML approaches for MNIST digit classification with comprehensive evaluation and comparison. Built to test my claude-code automation system. All this was produced, documented and tested, in about 2 hours, without me writing a single line of code. See my repos for claude-code-automation or cc-core versions.
 
 ## Overview
 
